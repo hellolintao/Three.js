@@ -5,15 +5,20 @@
 	<style type="text/css">
 		body {
 			margin: 0;
+			padding: 0;
 			overflow: hidden;
 			/* 隐藏body窗口区域滚动条 */
+		}
+		.demo {
+			width: 100vw;
+			background: yellow;
 		}
 	</style>
 	<script src="http://www.yanhuangxueyuan.com/3D/example/three.js"></script>
 </head>
 <body>
-
-
+<div class="demo">1</div>
+<canvas id="canvas"></canvas>
 <script>
 	/**
      * 创建场景对象Scene
@@ -55,16 +60,26 @@
     /**
      * 创建渲染器对象
      */
-    var renderer = new THREE.WebGLRenderer();
+     var canvas = document.querySelector('#canvas');
+var context = canvas.getContext('3d');
+console.log(context);
+    var renderer = new THREE.WebGLRenderer({antialias: true});
     renderer.setSize(width, height);//设置渲染区域尺寸
     renderer.setClearColor(0xb9d3ff, 1); //设置背景颜色
-    document.body.appendChild(renderer.domElement); //body元素中插入canvas对象
+    // document.body.appendChild(renderer.domElement); //body元素中插入canvas对象
     //执行渲染操作   指定场景、相机作为参数
     renderer.render(scene, camera);
    	setInterval(() => {
    		renderer.render(scene,camera);//执行渲染操作
     mesh.rotateY(0.01);//每次绕y轴旋转0.01弧度
    	}, 50);
+</script>
+<script type="text/javascript">
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('3d');
+    console.log(ctx);
+//     ctx.fillStyle="#FF0000";
+// ctx.fillRect(0,0,150,75);
 </script>
 </body>
 </html>
